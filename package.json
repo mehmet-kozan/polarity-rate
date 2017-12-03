@@ -1,0 +1,37 @@
+{
+  "name": "polarity-rate",
+  "version": "0.1.0",
+  "description": "An smart text miner, polarity rater with result beetween %-100 and %100",
+  "main": "polarity-rate.js",
+  "keywords":[
+    "google client",
+    "bing client",
+    "search engine client"
+  ],
+  "dependencies": {
+    "escape-string-regexp": "*"
+  },
+  "devDependencies": {
+    "fs": "*",
+    "mocha": "*",
+    "path": "*"
+  },
+  "scripts": {
+    "test": "mocha --recursive",
+    "start": "node polarity-rate.js"
+  },
+  "homepage":"https://gitlab.com/mehmet.kozan/polarity-rate",
+  "bugs" :{ 
+    "url" : "https://gitlab.com/mehmet.kozan/polarity-rate/issues",
+    "email" : "mehmet.kozan@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/mehmet.kozan/polarity-rate.git"
+  },
+  "author": "Mehmet Kozan",
+  "license": "MIT",
+  "engines": {
+    "node": "8.2.1"
+  }
+}
