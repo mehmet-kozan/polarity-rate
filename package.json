@@ -1,17 +1,36 @@
 {
   "name": "polarity-rate",
   "version": "0.1.0",
-  "description": "An smart text miner, polarity rater with result beetween %-100 and %100",
+  "description": "Text miner, polarity rater with results between -100% and +100%",
   "main": "polarity-rate.js",
-  "keywords":[
-    "google client",
-    "bing client",
-    "search engine client"
+  "keywords": [
+    "text-miner",
+    "text-mining",
+    "miner",
+    "mining",
+    "polarity-rate",
+    "polarity-rater",
+    "polarity",
+    "text-analytics",
+    "document-term-matrix",
+    "dtm",
+    "text-analysis",
+    "natural",
+    "afinn",
+    "sentiment",
+    "subjective",
+    "subjectivity",
+    "polarity",
+    "opinion",
+    "emotion",
+    "unicode"
   ],
   "dependencies": {
-    "escape-string-regexp": "*"
+    "xregexp": "^3.2.0",
+    "franc-min": "^3.1.1"
   },
   "devDependencies": {
+    "xlsx": "*",
     "fs": "*",
     "mocha": "*",
     "path": "*"
@@ -20,18 +39,18 @@
     "test": "mocha --recursive",
     "start": "node polarity-rate.js"
   },
-  "homepage":"https://gitlab.com/mehmet.kozan/polarity-rate",
-  "bugs" :{ 
-    "url" : "https://gitlab.com/mehmet.kozan/polarity-rate/issues",
-    "email" : "mehmet.kozan@live.com"
+  "homepage": "https://gitlab.com/autokent/polarity-rate",
+  "bugs": {
+    "url": "https://gitlab.com/autokent/polarity-rate/issues",
+    "email": "mehmet.kozan@live.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/mehmet.kozan/polarity-rate.git"
+    "url": "https://gitlab.com/autokent/polarity-rate.git"
   },
-  "author": "Mehmet Kozan",
+  "author": "Mehmet Kozan <mehmet.kozan@live.com>",
   "license": "MIT",
   "engines": {
-    "node": "8.2.1"
+    "node": ">=6.8.1"
   }
 }

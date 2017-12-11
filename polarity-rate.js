@@ -31,9 +31,10 @@ function _cleanText(text) {
     //clear stopword by default and current language
 
     //build ngaram array
-
-    debugger;
     //return text.replace(/[^a-zA-Z0-9ğĞçÇöÖüÜıIİişŞ]/g,'  ').replace(/[\s]+/gm,'  ').replace(/\s[a-zA-Z0-9ğĞçÇöÖüÜıIİişŞ]{1,3}\s/g,'  ').replace(/[\s]+/g,' ').toLowerCase().trim();
+
+    return cleanedText;
+
 }
 
 function _getWordList(fileName)
@@ -280,6 +281,9 @@ function Miner(text,wordList) {
     return result;
 }
 
+module.exports = Miner;
+
+//for testing purpose
 if (!module.parent) 
 {
     var testWordList = _getWordList('WordListTest.xlsx');
@@ -287,4 +291,3 @@ if (!module.parent)
     console.log(result);
 }
 
-module.exports = Miner;
