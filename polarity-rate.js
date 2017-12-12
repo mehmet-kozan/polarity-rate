@@ -4,27 +4,30 @@ const RATE_LIMIT = 5;
 var franc = require('franc-min');
 
 function _cleanText(text) {
-
+    //must clean stopwords
 
     //https://www.npmjs.com/package/stopwords-iso
     //mail find?
 
     //initial clean
     let cleanedText = XRegExp.replace(text,XRegExp('[^\\pL]+','g'), ' ').toLowerCase();
-
-    //cross check lang dedection libraries.
-    //language dedection, top 2 lang
-    console.log(franc.all(cleanedText, {blacklist: []}));
-
     let termArr = cleanedText.split(' ');
-    let cleanedTermArr = new Array(termArr.length);
-
+    let cleanedTextArr = [];
     for(let i=0,j=0;i<termArr.length;i++){
         if(termArr[0] !== undefined && termArr[0].length>3)
         {
-
+            cleanedTextArr.push(termArr[0]);
         }
     }
+
+    //cross check lang dedection libraries.
+    //language dedection, top 2 lang
+    //console.log(franc.all(cleanedText, {blacklist: []}));
+
+    //let termArr = cleanedText.split(' ');
+    //let cleanedTermArr = new Array(termArr.length);
+
+
 
     //clear word less then 4 length.
 
