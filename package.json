@@ -1,6 +1,6 @@
 {
   "name": "polarity-rate",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Text miner, polarity rater with results between -100% and +100%",
   "main": "polarity-rate.js",
   "keywords": [
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "xregexp": "^3.2.0",
-    "franc-min": "^3.1.1"
+    "xlsx": "^0.11.13"
   },
   "devDependencies": {
     "xlsx": "*",

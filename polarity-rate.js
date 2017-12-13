@@ -1,44 +1,6 @@
 var XLSX = require('xlsx');
 var XRegExp = require('xregexp');
 const RATE_LIMIT = 5;
-var franc = require('franc-min');
-
-function _cleanText(text) {
-    //must clean stopwords
-
-    //https://www.npmjs.com/package/stopwords-iso
-    //mail find?
-
-    //initial clean
-    let cleanedText = XRegExp.replace(text,XRegExp('[^\\pL]+','g'), ' ').toLowerCase();
-    let termArr = cleanedText.split(' ');
-    let cleanedTextArr = [];
-    for(let i=0,j=0;i<termArr.length;i++){
-        if(termArr[0] !== undefined && termArr[0].length>3)
-        {
-            cleanedTextArr.push(termArr[0]);
-        }
-    }
-
-    //cross check lang dedection libraries.
-    //language dedection, top 2 lang
-    //console.log(franc.all(cleanedText, {blacklist: []}));
-
-    //let termArr = cleanedText.split(' ');
-    //let cleanedTermArr = new Array(termArr.length);
-
-
-
-    //clear word less then 4 length.
-
-    //clear stopword by default and current language
-
-    //build ngaram array
-    //return text.replace(/[^a-zA-Z0-9ğĞçÇöÖüÜıIİişŞ]/g,'  ').replace(/[\s]+/gm,'  ').replace(/\s[a-zA-Z0-9ğĞçÇöÖüÜıIİişŞ]{1,3}\s/g,'  ').replace(/[\s]+/g,' ').toLowerCase().trim();
-
-    return cleanedText;
-
-}
 
 function _getWordList(fileName)
 {
@@ -124,7 +86,7 @@ function _getWordList(fileName)
  * @param {Map} Input findedWordsMap
  * @return {Object}
  */
-function _calculate(findedWordsMap)
+function _calculate(findedWordsMap,rateLimit)
 {
     let rate = 0;
     let score = 0;
@@ -161,12 +123,12 @@ function _calculate(findedWordsMap)
         {
             if(score > 0)
             {
-                let tempRate = rate + (100 - rate)*point/(100.0*RATE_LIMIT);
+                let tempRate = rate + (100 - rate)*point/(100.0*rateLimit);
                 rate = tempRate >= 100 ? rate : tempRate;
             }
             else
             {
-                let tempRate = rate + (100 + rate)*point/(100.0*RATE_LIMIT);
+                let tempRate = rate + (100 + rate)*point/(100.0*rateLimit);
                 rate = tempRate <= -100 ? rate : tempRate;
             }
         }
@@ -188,15 +150,24 @@ function _calculate(findedWordsMap)
  * @param {String} Input text
  * @return {Object}
  */
-function Miner(text,wordList) {
+function Miner(text,wordList,rateLimit) {
     
     if (typeof wordList == 'undefined')
     {
         wordList = _getWordList('WordList.xlsx');
     }
 
+    if (typeof rateLimit == 'undefined')
+    {
+        rateLimit = RATE_LIMIT;
+    }
+
+    //sort list by lenght
+    wordList.sort((a,b)=>a[0].length < b[0].length);
+
     // Storage objects
-    text = _cleanText(text);
+    //XRegExp.replace(text,XRegExp('[^\\pL]+','g'), ' ').toLowerCase();
+    text = XRegExp.replace(text,XRegExp('[^\\pL]+','g'), ' ').toLowerCase();
     let wordCount = text.split(' ').length;
     let findedWordsMap = new Map();
 
@@ -269,7 +240,7 @@ function Miner(text,wordList) {
         }
     }
 
-    let _result = _calculate(findedWordsMap);
+    let _result = _calculate(findedWordsMap,rateLimit);
 
     let result = {
         cleanText:          text,
@@ -289,8 +260,13 @@ module.exports = Miner;
 //for testing purpose
 if (!module.parent) 
 {
-    var testWordList = _getWordList('WordListTest.xlsx');
-    var result = Miner("aaaa bbbb cccc dddd eeee",testWordList);
+    //var testWordList = _getWordList('WordListTest.xlsx');
+    let wordList = [
+        ["aaaa",10],
+        ["aaaa bbbb",50],
+        ["aaaa bbbb cccc xxxx",60]
+    ];
+    var result = Miner("aaaa bbbb cccc dddd eeee",wordList);
     console.log(result);
 }
 

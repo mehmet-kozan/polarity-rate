@@ -18,7 +18,14 @@
 ```js
 const PolarityRate = require('polarity-rate');
 
-
+let text = "aaaa bbbb cccc dddd eeee";
+let wordList = [
+    ["aaaa",10],
+    ["aaaa bbbb",50],
+    ["aaaa bbbb cccc xxxx",60]
+];
+var result = PolarityRate(text,wordList);
+console.log(result.rate);//50.1
 ```
 
 
