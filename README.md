@@ -1,5 +1,6 @@
 # polarity-rate
 > **Text miner, polarity rater with results between -100% and +100%**
+
 > **Unicode Supported**
 
 ![logo](https://assets.gitlab-static.net/uploads/-/system/project/avatar/4802337/polarity-rate.png)
@@ -14,7 +15,7 @@
 
 ## Usage
 
-### Contains
+### Simple Usage
 ```js
 const PolarityRate = require('polarity-rate');
 
@@ -28,6 +29,7 @@ var result = PolarityRate(text,wordList);
 console.log(result.rate);//50.1
 ```
 
+### Rules when building wordlist
 
 ## Test
 `mocha` or `npm test`
