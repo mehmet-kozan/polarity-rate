@@ -30,13 +30,12 @@
 		"array-polar"
 	],
 	"dependencies": {
-		"xregexp": "^3.2.0",
-		"xlsx": "^0.11.13"
+		"xregexp": "^3.2.0"
 	},
 	"devDependencies": {
-		"xlsx": "^0.11.14",
-		"mocha": "^4.0.1",
-		"path": "^0.12.7"
+		"mocha": "4.1.0",
+		"path": "^0.12.7",
+		"xlsx": "0.11.16"
 	},
 	"scripts": {
 		"test": "mocha --recursive",
